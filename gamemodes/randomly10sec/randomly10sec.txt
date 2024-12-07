@@ -1,0 +1,9 @@
+"randomly10sec"
+{ 
+	"base" 		    "base" 
+	"title" 		    "Randomly 10 Seconds" 
+	"maps" 		    "^rms_" 
+	"category" 	    "other" 
+	"menusystem" 	"1" 
+	"workshopid" 	"3375398684" 
+}
