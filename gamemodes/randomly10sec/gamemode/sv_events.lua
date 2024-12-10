@@ -10,7 +10,10 @@ local events = {
     "Physgun to a random player",
     "Watermelon Rain",
     "Play a sound",
-    "Get bunch Headcrabs"
+    "Get bunch Headcrabs",
+    "1 Shot",
+    "Overheal",
+    "Atom Bombs"
 }
 
 -- Function to send messages to all players in chat
@@ -93,14 +96,13 @@ function TriggerRandomEvent()
         for _, ply in ipairs(player.GetAll()) do
             ply:EmitSound("ambient/alarms/alarm_citizen_loop1.wav")
         
-            -- Остановить звук через 5 секунд
-            timer.Simple( 5, function()
+            timer.Simple(5, function()
                 if IsValid(ply) then
                     ply:StopSound("ambient/alarms/alarm_citizen_loop1.wav")
                 end
             end)
         end
-    elseif eventType == 9 then
+    elseif eventType ==  9 then
         -- Spawn 5 headcrabs near each player
         for _, ply in ipairs(player.GetAll()) do
             for i = 1, 5 do
@@ -110,6 +112,22 @@ function TriggerRandomEvent()
                     headcrab:Spawn()
                 end
             end
+        end
+    elseif eventType == 10 then
+        for _, ply in ipairs(player.GetAll()) do
+            ply:SetHealth(1)
+        end
+    elseif eventType == 11 then
+        for _, ply in ipairs(player.GetAll()) do
+            ply:SetHealth(200)
+        end
+    elseif eventType == 12 then
+        for _, ply in ipairs(player.GetAll()) do
+            local barrel = ents.Create("prop_physics")
+            barrel:SetModel("models/props_c17/oildrum001_explosive.mdl")
+            barrel:SetPos(ply:GetPos() + Vector(math.random(-100, 100), math.random(-100, 100), 0))
+            barrel:Spawn()
+            barrel:Ignite(10, 0)
         end
     end
 
